@@ -28,25 +28,23 @@ serve(async (req) => {
       );
     }
 
-    // Simple guardrails + moderation check
+    // Simple guardrails + moderation check for cybersecurity context
     const lastUserContent = Array.isArray(messages)
       ? (messages.slice().reverse().find((m: any) => m?.role === 'user')?.content ?? '')
       : '';
 
     const badPatterns = [
-      /\b(is|was)\s+[^?!.]*\s+(criminal|felon|fraud|corrupt)\b/i,
-      /\b(sc(am|ammer)|liar)\b/i,
-      /\b(pedophile|traitor|terrorist)\b/i,
-      /\bkill|violence\b/i,
-      /\b(is|was)\s+[^?!.]*\s+(gay|lesbian|bisexual|straight|trans|transgender)\b/i,
-      /\b(married|single|dating|girlfriend|boyfriend|wife|husband)\b/i,
-      /\b(personal|private)\s+(life|relationship|family)\b/i,
+      /\b(hack|attack|exploit)\s+(real|actual|live)\s+(systems?|networks?|servers?)\b/i,
+      /\b(illegal|criminal)\s+(activities?|hacking)\b/i,
+      /\bmalware\s+(creation|development)\b/i,
+      /\b(ddos|dos)\s+attack\b/i,
+      /\b(steal|theft)\s+(data|credentials|passwords?)\b/i,
     ];
     const isBadFaith = typeof lastUserContent === 'string' && badPatterns.some((r) => r.test(lastUserContent));
 
     if (isBadFaith) {
       console.warn('[MODERATION] Flagged user query:', lastUserContent);
-      const deflection = "I'm here to discuss Winston's policy positions for NJ-12. I can't engage with allegations, personal attacks and non-policy discourse. Would you like info on his accountability pledges or a specific policy area?";
+      const deflection = "I'm here to help you learn about HackerGPT's ethical cybersecurity tools and capabilities. I can't assist with illegal activities or malicious hacking. Would you like to know about our penetration testing tools or security research features?";
       return new Response(
         JSON.stringify({
           choices: [ { message: { content: deflection } } ],
@@ -59,9 +57,9 @@ serve(async (req) => {
       );
     }
 
-    // Inject guardrail system prompt
+    // Inject guardrail system prompt for cybersecurity context
     messages = [
-      { role: 'system', content: 'Guardrails: Stay policy-focused. If asked about allegations or personal attacks, decline and redirect to policies. Avoid making unverified claims about individuals. Be civil and constructive.' },
+      { role: 'system', content: 'Guardrails: Focus on ethical cybersecurity practices and HackerGPT platform capabilities. Emphasize legal compliance, responsible disclosure, and professional security research. Decline requests for illegal activities and redirect to legitimate security tools and practices.' },
       ...messages,
     ];
 
@@ -70,8 +68,8 @@ serve(async (req) => {
       headers: {
         'Authorization': `Bearer ${openRouterApiKey}`,
         'Content-Type': 'application/json',
-        'HTTP-Referer': 'https://policy.winstonforcongress.com',
-        'X-Title': 'Winston for Congress Policy Assistant',
+        'HTTP-Referer': 'https://hackergpt.app',
+        'X-Title': 'HackerGPT AI Sales Assistant',
       },
       body: JSON.stringify({
         model,
