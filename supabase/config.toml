@@ -1,0 +1,10 @@
+project_id = "tqgdtqousmjhaeyggoqy"
+
+[functions.chat-ai]
+verify_jwt = false
+
+[functions.policy-matcher]
+verify_jwt = false
+
+[functions.keepalive]
+verify_jwt = false
