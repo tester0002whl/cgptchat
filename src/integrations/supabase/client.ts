@@ -3,10 +3,10 @@ import { createClient } from '@supabase/supabase-js';
 import type { Database } from './types';
 
 const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL || "https://vbckjjrpozxhhwyuenbg.supabase.co";
-const SUPABASE_PUBLISHABLE_KEY = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY || "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZiY2tqanJwb3p4aGh3eXVlbmJnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTcwODQ0NTYsImV4cCI6MjA3MjY2MDQ1Nn0.M3uRbclztZGX0FoTQDVpXRl3Q886sJ2UdvXE_ZeExvI";
+const SUPABASE_PUBLISHABLE_KEY = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY || "sb_publishable_CC3OVrwCdj20pbkdKwTd5A_YPAbULOg";
 
-// OpenRouter API Key (for server-side or secure usage only)
-export const OPENROUTER_API_KEY = "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";
+// Note: OpenRouter API Key is stored securely in Supabase Edge Function secrets
+// and should NOT be exposed in client-side code
 
 // Import the supabase client like this:
 // import { supabase } from "@/integrations/supabase/client";

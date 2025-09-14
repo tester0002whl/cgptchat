@@ -5,11 +5,13 @@ import { HeroSection } from "@/components/HeroSection";
 import { tools, toolCategories } from "@/data/tools";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { MessageCircle, Shield, Zap, Crown, Target } from "lucide-react";
+import { MessageCircle, Shield, Zap, Crown, Target, FileText } from "lucide-react";
 import { HackerGPTChat } from "@/components/HackerGPTChat";
+import { ScopingChat } from "@/components/ScopingChat";
 
 const Index = () => {
   const [showChat, setShowChat] = useState(false);
+  const [showScopingChat, setShowScopingChat] = useState(false);
 
   const scrollToTools = () => {
     document.getElementById('tools-section')?.scrollIntoView({ behavior: "smooth" });
@@ -143,9 +145,17 @@ const Index = () => {
             🎯 Ready to Upgrade Your Security Capabilities?
           </h2>
           <p className="text-lg text-muted-foreground mb-8">
-            Chat with our AI assistant to learn about HackerGPT's tools, get personalized recommendations, and discover how we can enhance your cybersecurity workflow.
+            Get a personalized cybersecurity quote from White Hack Labs or chat with our AI assistant to learn about HackerGPT's tools and capabilities.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button 
+              size="lg"
+              onClick={() => setShowScopingChat(true)}
+              className="bg-green-600 hover:bg-green-700 text-white"
+            >
+              <FileText className="w-5 h-5 mr-2" />
+              Get Custom Quote
+            </Button>
             <Button 
               size="lg"
               onClick={() => setShowChat(true)}
@@ -170,6 +180,7 @@ const Index = () => {
       </section>
 
       <HackerGPTChat open={showChat} onOpenChange={setShowChat} />
+      <ScopingChat open={showScopingChat} onOpenChange={setShowScopingChat} />
       <Footer />
     </div>
   );
